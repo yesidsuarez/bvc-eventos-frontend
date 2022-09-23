@@ -1,0 +1,50 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-4"></div>
+    <div class="col-md-4"><h1 class="center">Eventos Digitales bvc</h1></div>
+    <div class="col-md-4"></div>
+  </div>
+
+  <div class="row">
+    <form class="row g-3" (ngSubmit)="getEventos(plataforma)">
+      <div class="col-md-4">
+        <h2>Plataformas tecnológicas:</h2>
+      </div>
+      <div class="col-md-6">
+        <select class="form-select"  aria-label="Default select example" [(ngModel)]="plataforma" [ngModelOptions]="{standalone: true}">
+          <option value="0" disabled>Lista de plataformas</option>
+          <option [ngValue] ="item.idPlataforma" *ngFor="let item of plataformas">{{item.descripcion}}</option>
+        </select>
+      </div>
+      <div class="col-md-2">
+        <button type="submit" class="btn btn-primary mb-3">Consultar</button>
+      </div>
+    </form>
+  </div>
+  <hr>
+
+  <div class="row" *ngIf="eventosByPlataforma.length > 0">
+    <div class="col-md-4"></div>
+    <div class="col-md-4">
+      <table class="table table-bordered">
+        <thead class="table-primary">
+          <tr>
+            <th scope="col">Evento</th>
+            <th scope="col">Fecha</th>
+            <th scope="col">Cantidad</th>
+            <th scope="col">Costo</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of eventosByPlataforma">
+            <th>{{item.evento.descripcion}}</th>
+            <td>{{item.fecha}}</td>
+            <td>{{item.cantidad}}</td>
+            <td>{{item.costo}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="col-md-4"></div>    
+  </div>
+</div>
